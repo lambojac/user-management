@@ -3,19 +3,25 @@ const express=require("express")
 const mongoose=require("mongoose")
 const bodyParser=require("body-parser")
 const cors=require("cors")
-
+const userRoute=require("./routes/userRoute")
 const app=express()
+const errorHandler=require("./middleware/errormiddleware")
 
 //middlewares
-app.use(express.json())
+app.use(express.json)
 app.use(express.urlencoded({extended:false}))
 app.use(bodyParser.json())
 //Routes
+
+//routes middleware
+app.use("api/users",userRoute)
+
 app.get("/",(req,res)=>{
     res.send("home page")
 })
 
-
+// errormiddlwarre
+app.use(errorHandler)
 const PORT=process.env.PORT||5000
 mongoose.connect('mongodb+srv://kennie:869480Ak@cluster0.zkjbfkp.mongodb.net/pevents?retryWrites=true&w=majority'
 ,{
