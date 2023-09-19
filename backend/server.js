@@ -6,11 +6,13 @@ const cors=require("cors")
 const userRoute=require("./routes/userRoute")
 const app=express()
 const errorHandler=require("./middleware/errormiddleware")
-
+const cookieParser=require("cookie-parser")
 //middlewares
 app.use(express.json)
 app.use(express.urlencoded({extended:false}))
 app.use(bodyParser.json())
+app.use(cookieParser())
+app.use(cors())
 //Routes
 
 //routes middleware
@@ -21,8 +23,8 @@ app.get("/",(req,res)=>{
 })
 
 // errormiddlwarre
-app.use(errorHandler)
-const PORT=process.env.PORT||5000
+
+const PORT=process.env.PORT||4000
 mongoose.connect('mongodb+srv://kennie:869480Ak@cluster0.zkjbfkp.mongodb.net/pevents?retryWrites=true&w=majority'
 ,{
     useNewUrlParser:true,
