@@ -18,7 +18,7 @@ app.use(cors())
 //routes middleware
 app.use("api/users",userRoute)
 
-app.get("/",(req,res)=>{
+app.get("/home",(req,res)=>{
     res.send("home page")
 })
 
